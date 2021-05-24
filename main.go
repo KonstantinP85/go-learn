@@ -8,6 +8,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"log"
 	"net/http"
+	"os"
 )
 
 type Reader struct {
@@ -37,12 +38,12 @@ var db *gorm.DB
 var err error
 
 func main() {
-	dialect := "postgres"
-	host := "localhost"
-	dbPort := "5432"
-	user := "postgres"
-	dbName := "go_project"
-	password := "Kristina"
+	dialect := os.Getenv("DIALECT")
+	host := os.Getenv("HOST")
+	dbPort := os.Getenv("DBPORT")
+	user := os.Getenv("USER")
+	dbName := os.Getenv("DBNAME")
+	password := os.Getenv("PASSWORD")
 
 	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%s", host, user, dbName, password, dbPort)
 
